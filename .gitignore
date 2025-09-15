@@ -44,4 +44,8 @@ src/main/resources/application.properties
 ### Node / Frontend ###
 node_modules/
 dist/
-.env
+uploads/
+*.zip
+*.mp4
+uploads/*.jpg
+uploads/*.png
