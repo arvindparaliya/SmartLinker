@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+  <title data-th-text="${loggedInUser.name}+' | Profile | SmartLinker'">Profile Page | SmartLinker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div id="content">
+    <!-- Sidebar -->
+    <div th:if="${loggedInUser}">
+      <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="sm:pl-64 pt-20 min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div class="p-4 md:p-8">
+        <!-- Page Header -->
+        <div class="max-w-3xl mx-auto text-center mt-2 mb-6 bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl p-6"
+          data-aos="fade-down">
+          <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Profile Information</h1>
+          <p class="text-gray-600 dark:text-gray-400">View and manage your account details</p>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden"
+          data-aos="fade-up">
+          <!-- Profile Header -->
+          <div class="bg-gradient-to-r from-blue-400 to-indigo-500 p-6 text-center">
+            <div class="flex justify-center">
+              <div class="relative">
+                <img th:src="@{${loggedInUser.profilePic}}" src="/images/duser.png" alt="Profile Photo"
+                  class="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
+                  onerror="this.onerror=null;this.src='/images/duser.png'">
+
+                <!-- <button class="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </button> -->
+              </div>
+            </div>
+            <h2 class="mt-4 text-2xl font-semibold text-white" data-th-text="${loggedInUser.name}">User Name</h2>
+          </div>
+
+          <!-- Profile Details -->
+          <div class="p-6 md:p-8">
+            <div class="space-y-6">
+              <!-- Email Section -->
+              <div class="flex flex-col md:flex-row md:items-center justify-between border-b pb-4">
+                <div>
+                  <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Email Address</h3>
+                  <p class="mt-1 text-lg font-medium text-gray-800 dark:text-white"
+                    data-th-text="${loggedInUser.email}">user.email@example.com</p>
+                </div>
+                <span class="mt-2 md:mt-0 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium"
+                  data-th-classappend="${loggedInUser.emailVerified} ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'"
+                  id="email-verified" data-th-text="${loggedInUser.emailVerified ? 'Verified' : 'Unverified'}">
+                  Unverified
+                </span>
+              </div>
+
+              <!-- Phone Section -->
+              <div class="flex flex-col md:flex-row md:items-center justify-between border-b pb-4">
+                <div>
+                  <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Phone Number</h3>
+                  <p class="mt-1 text-lg font-medium text-gray-800 dark:text-white"
+                    data-th-text="${loggedInUser.phoneNumber}">123-456-7890</p>
+                </div>
+                <!-- <span class="mt-2 md:mt-0 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium" 
+                        data-th-classappend="${loggedInUser.phoneVerified} ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'"
+                        id="phone-verified" 
+                        data-th-text="${loggedInUser.phoneVerified ? 'Verified' : 'Unverified'}">
+                    Unverified
+                  </span> -->
+              </div>
+
+              <!-- About Section -->
+              <div>
+                <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">About</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-300 leading-relaxed"
+                  data-th-text="${loggedInUser.about} ?: 'No information provided'">About the user...</p>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <a data-th-href="@{'/user/profile/view/' + ${loggedInUser.id}}"
+                class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Edit Profile
+              </a>
+
+              <!-- <button class="px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                  Change Password
+                </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-th-replace="~{user/profile_modals :: user}"></div>
+  </div>
+  <script data-th-src="@{'/js/profile.js'}"></script>
+
+  <script>
+    console.log("Profile page loaded");
+    // Additional JavaScript can be added here for interactivity
+    document.addEventListener('DOMContentLoaded', function () {
+      // You can add event listeners here for the edit buttons, etc.
+    });
+  </script>
+</body>
+
+</html>

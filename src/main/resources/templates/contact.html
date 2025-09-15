@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::section},~{::title},~{})}">
+  <head>
+    <title>Contact Us | SmartLinker</title>
+  </head>
+
+  <section id="content" class="px-6 py-16 bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-12" data-aos="fade-down">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        We’d love to hear from you. Please fill out the form below and we’ll get back to you soon.
+      </p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md p-8" data-aos="fade-up">
+      <form th:action="@{/contact}" method="post" enctype="multipart/form-data" th:object="${contactForm}">
+        <!-- Name -->
+        <div class="mb-4">
+          <label class="block mb-1 font-medium" for="name">Full Name</label>
+          <input type="text" th:field="*{name}" class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-white" placeholder="Enter your name">
+          <p class="text-red-500 text-sm" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label class="block mb-1 font-medium" for="email">Email Address</label>
+          <input type="email" th:field="*{email}" class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-white" placeholder="example@gmail.com">
+          <p class="text-red-500 text-sm" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+
+        <!-- Description / Message -->
+        <div class="mb-4">
+          <label class="block mb-1 font-medium" for="description">Message</label>
+          <textarea th:field="*{description}" class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-white" rows="4" placeholder="Your message..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition duration-300">
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+<!-- 
+    Social Links
+    <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="300">
+      <h2 class="text-2xl font-semibold mb-4">Connect With Us</h2>
+      <div class="flex justify-center gap-6 text-2xl text-blue-600 dark:text-blue-400">
+        <a href="mailto:arvindparaliya01@gmail.com" title="Gmail" target="_blank"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/arvindparaliya" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/arvindparaliya" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://x.com/arvindparaliyaa" title="X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div> -->
+
+    <!-- Toast Message -->
+    <div th:if="${successMessage}" class="fixed bottom-6 right-6 bg-green-600 text-white px-5 py-3 rounded shadow-lg z-50 animate-fade-in-down">
+      <p th:text="${successMessage}"></p>
+    </div>
+    <div th:if="${errorMessage}" class="fixed bottom-6 right-6 bg-red-600 text-white px-5 py-3 rounded shadow-lg z-50 animate-fade-in-down">
+      <p th:text="${errorMessage}"></p>
+    </div>
+  </section>
+</html>

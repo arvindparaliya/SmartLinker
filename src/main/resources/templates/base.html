@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html
+  class="light"
+  lang="en"
+  th:fragment="parent(content,title,script)"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Dynamic Page Title -->
+    <title data-th-replace="${title}">SmartLinker</title>
+
+    <!-- Flowbite CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS output -->
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" data-th-href="@{'/css/style.css'}" />
+
+    <!-- AOS CSS (Only latest version kept) -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script>
+    // Prevent white flash in dark mode 
+      (function () {
+        const theme = localStorage.getItem("theme");
+    
+    // Replace 'dark-mode' with your actual class
+      if (
+        theme === "dark" || 
+        (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark"); 
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    })();
+  </script>
+
+  </head>
+
+  <body class="dark:bg-gray-900 bg-gray-100 dark:text-white">
+
+    <!-- Conditional Navbar (User-specific or generic) -->
+    <div th:if="${loggedInUser}">
+      <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+    </div>
+
+    <div th:unless="${loggedInUser}">
+      <div data-th-replace="~{navbar :: navbar}"></div>
+    </div>
+
+    <!-- Page-specific Content -->
+    <div>
+      <section data-th-replace="${content}"></section>
+    </div>
+
+    <!-- AOS JS-->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+    <!-- Custom JS -->
+    <script data-th-src="@{'/js/script.js'}" defer></script>
+
+    <!-- Page-specific Script Block -->
+    <th:block data-th-replace="${script}"></th:block>
+  </body>
+</html>

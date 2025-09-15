@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" 
+    th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
+  <head>
+    <title>Our Services | SmartLinker</title>
+  </head>
+  <body>
+    <section id="content" class="px-4 py-16 bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
+      <!-- Hero Section -->
+      <div class="max-w-3xl mx-auto text-center mb-16" data-aos="fade-down">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">What We Offer</h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          SmartLinker provides cutting-edge tools for managing your contacts with speed and security.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 text-center hover:shadow-xl transition-all duration-300" data-aos="zoom-in">
+          <div class="w-10 h-10 mx-auto flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 mb-3">
+            <i class="fas fa-address-book text-lg"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-1">Contact Storage</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Securely store and manage all your contacts in one place.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 text-center hover:shadow-xl transition-all duration-300" data-aos="zoom-in" data-aos-delay="100">
+          <div class="w-10 h-10 mx-auto flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 mb-3">
+            <i class="fas fa-user-shield text-lg"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-1">Privacy Control</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Set permissions and protect user data with advanced privacy tools.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 text-center hover:shadow-xl transition-all duration-300" data-aos="zoom-in" data-aos-delay="200">
+          <div class="w-10 h-10 mx-auto flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 mb-3">
+            <i class="fas fa-share-alt text-lg"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-1">Easy Sharing</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Quickly share contact details with others using secure links.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 text-center hover:shadow-xl transition-all duration-300" data-aos="zoom-in">
+          <div class="w-10 h-10 mx-auto flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 mb-3">
+            <i class="fas fa-sync-alt text-lg"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-1">Real-time Sync</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Sync contacts across devices instantly and automatically.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 text-center hover:shadow-xl transition-all duration-300" data-aos="zoom-in" data-aos-delay="100">
+          <div class="w-10 h-10 mx-auto flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 mb-3">
+            <i class="fas fa-chart-line text-lg"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-1">Usage Insights</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Track your contacts and interactions with smart analytics.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 text-center hover:shadow-xl transition-all duration-300" data-aos="zoom-in" data-aos-delay="200">
+          <div class="w-10 h-10 mx-auto flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 mb-3">
+            <i class="fas fa-lock text-lg"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-1">Secure Login</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Advanced login with encrypted credentials and session timeout.</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

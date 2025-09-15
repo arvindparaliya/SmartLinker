@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <title>Categories</title>
+</head>
+
+<body>
+<div id="content" class="sm:pl-64 px-6 py-16 bg-white text-gray-800 dark:bg-gray-900 dark:text-white" >
+
+    <!-- Sidebar for logged-in users -->
+    <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+
+    <div class="p-8">
+        <!-- Page Header -->
+        <div class=" bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl p-6 mb-10" data-aos="fade-down">
+                
+            <h1 class="text-2xl md:text-3xl font-bold mb-2">Contact Categories</h1>
+            <p class="text-gray-600 dark:text-gray-300">
+                Organize and filter your contacts using these categories
+            </p>
+        </div>
+
+        <!-- Categories Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+
+            <!-- Favorite Contacts -->
+            <a href="/user/contacts/filter?filter=favorites"
+               class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900 hover:bg-yellow-100 dark:hover:bg-yellow-800 transition flex flex-col items-center">
+                <div class="p-3 rounded-full bg-yellow-200 dark:bg-yellow-700 text-yellow-800 dark:text-yellow-200 mb-2">
+                    <i class="fas fa-star text-xl"></i>
+                </div>
+                <span class="text-sm font-medium ">Favorites</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                      th:text="${favoriteCount + ' contacts'}"></span>
+            </a>
+
+            <!-- Recently Added -->
+            <a href="/user/contacts/filter?filter=recent"
+               class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900 hover:bg-blue-100 dark:hover:bg-blue-800 transition flex flex-col items-center">
+                <div class="p-3 rounded-full bg-blue-200 dark:bg-blue-700 text-blue-800 dark:text-blue-200 mb-2">
+                    <i class="fas fa-clock text-xl"></i>
+                </div>
+                <span class="text-sm font-medium">Recently Added</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                      th:text="${recentCount + ' contacts'}"></span>
+            </a>
+
+            <!-- With LinkedIn -->
+            <a href="/user/contacts/filter?filter=linkedin"
+               class="p-4 rounded-lg bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 transition flex flex-col items-center">
+                <div class="p-3 rounded-full bg-indigo-200 dark:bg-indigo-700 text-indigo-800 dark:text-indigo-200 mb-2">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </div>
+                <span class="text-sm font-medium">With LinkedIn</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                      th:text="${linkedinCount + ' contacts'}"></span>
+            </a>
+
+            <!-- With Website -->
+            <a href="/user/contacts/filter?filter=website"
+               class="p-4 rounded-lg bg-green-50 dark:bg-green-900 hover:bg-green-100 dark:hover:bg-green-800 transition flex flex-col items-center">
+                <div class="p-3 rounded-full bg-green-200 dark:bg-green-700 text-green-800 dark:text-green-200 mb-2">
+                    <i class="fa-solid fa-globe text-xl"></i>
+                </div>
+                <span class="text-sm font-medium">With Website</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                      th:text="${websiteCount + ' contacts'}"></span>
+            </a>
+
+            <!-- Missing Email -->
+            <a href="/user/contacts/filter?filter=missingEmail"
+               class="p-4 rounded-lg bg-red-50 dark:bg-red-900 hover:bg-red-100 dark:hover:bg-red-800 transition flex flex-col items-center">
+                <div class="p-3 rounded-full bg-red-200 dark:bg-red-700 text-red-800 dark:text-red-200 mb-2">
+                    <i class="fa-solid fa-envelope-open text-xl"></i>
+                </div>
+                <span class="text-sm font-medium">Missing Email</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                      th:text="${missingEmailCount + ' contacts'}"></span>
+            </a>
+
+            <!-- Missing Address -->
+            <a href="/user/contacts/filter?filter=missingAddress"
+               class="p-4 rounded-lg bg-purple-50 dark:bg-purple-900 hover:bg-purple-100 dark:hover:bg-purple-800 transition flex flex-col items-center">
+                <div class="p-3 rounded-full bg-purple-200 dark:bg-purple-700 text-purple-800 dark:text-purple-200 mb-2">
+                    <i class="fas fa-location-dot text-xl"></i>
+                </div>
+                <span class="text-sm font-medium">Missing Address</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                      th:text="${missingAddressCount + ' contacts'}"></span>
+            </a>
+
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</body>
+</html>

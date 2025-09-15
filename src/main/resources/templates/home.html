@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+  <title>SmartLinker - Home</title>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-500">
+<div id="content">
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-gray-800 dark:to-gray-900 text-white text-center px-4 py-20">
+    <div data-aos="fade-down">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Welcome to SmartLinker</h1>
+      <p class="text-xl mb-8" data-aos="fade" data-aos-delay="200">Your smart and secure contact management solution.</p>
+      <a th:href="@{/register}" class="bg-white text-blue-600 font-bold px-8 py-3 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-500">
+    <div class="container mx-auto text-center px-4">
+      <h2 class="text-4xl font-bold mb-12" data-aos="fade-up">Why SmartLinker?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg" data-aos="zoom-in">
+          <i class="fas fa-address-card text-blue-500 text-5xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Smart Contact Handling</h3>
+          <p class="text-gray-600 dark:text-gray-300">Seamless adding, editing, and managing of your contacts in one place.</p>
+        </div>
+        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fas fa-lock text-blue-500 text-5xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Bank-Level Security</h3>
+          <p class="text-gray-600 dark:text-gray-300">We use end-to-end encryption to ensure your data is 100% safe.</p>
+        </div>
+        <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="400">
+          <i class="fas fa-sync-alt text-blue-500 text-5xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Accessible Anywhere</h3>
+          <p class="text-gray-600 dark:text-gray-300">Stay connected to your data on all devices, 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Testimonials -->
+<section class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto text-center px-4">
+    <h2 class="text-4xl font-bold mb-12" data-aos="fade-up">What Users Say</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-lg" data-aos="fade-right">
+        <p class="italic text-gray-600 dark:text-gray-300">
+          "SmartLinker has made managing my contacts incredibly efficient. It saves me time every day and keeps everything well organized."
+        </p>
+        <h4 class="font-semibold mt-4">— Bhavik Kumar</h4>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-lg" data-aos="fade-left" data-aos-delay="200">
+        <p class="italic text-gray-600 dark:text-gray-300">
+          "I love how simple and secure SmartLinker feels. The design is clean, and everything just works without hassle."
+        </p>
+        <h4 class="font-semibold mt-4">— Shruti Sharma</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- CTA -->
+  <section class="py-20 bg-blue-600 dark:bg-indigo-900 text-white text-center transition-colors" data-aos="fade-up">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Start Managing Smarter</h2>
+      <p class="mb-8 text-lg">Join SmartLinker today and keep your contacts safe and accessible.</p>
+      <a th:href="@{/register}" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold shadow hover:bg-gray-200">Create an Account</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="bg-gray-800 dark:bg-black text-white py-10 px-6">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+    
+    <!-- Brand Info -->
+    <div>
+      <h2 class="text-2xl font-bold mb-3">SmartLinker</h2>
+      <p class="text-gray-400 text-sm mb-2">Smart and secure contact management for modern users.</p>
+      <p class="text-gray-400 text-sm">Email: <a href="mailto:arvindparaliya01@gmail.com" class="hover:text-blue-400">arvindparaliya01@gmail.com</a></p>
+      <p class="text-gray-400 text-sm">Phone: +91 81602 21174</p>
+      <p class="text-gray-400 text-sm">Location: Gujarat, India</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-3">Quick Links</h3>
+      <ul class="space-y-2 text-sm text-gray-300">
+        <li><a th:href="@{/}" class="hover:text-blue-400 transition">Home</a></li>
+        <li><a th:href="@{/register}" class="hover:text-blue-400 transition">Register</a></li>
+        <li><a th:href="@{/login}" class="hover:text-blue-400 transition">Login</a></li>
+        <li><a th:href="@{/about}" class="hover:text-blue-400 transition">About</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Links -->
+    <div class="text-center sm:text-left">
+      <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+      <div class="flex justify-center sm:justify-start space-x-5 text-xl">
+
+        <a th:href="@{https://github.com/arvindparaliya}" target="_blank"
+           class="text-gray-400 hover:text-white transition">
+          <i class="fab fa-github"></i>
+        </a>
+        <a th:href="@{https://linkedin.com/in/arvindparaliya}" target="_blank"
+           class="text-gray-400 hover:text-blue-400 transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a th:href="@{https://x.com/arvindparaliyaa}" target="_blank"
+           class="text-gray-400 hover:text-gray-300 transition">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+
+        <a href="mailto:arvindparaliya01@gmail.com" target="_blank"
+          class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="mt-10 text-center text-sm text-gray-500 border-t border-gray-700 pt-6">
+    &copy; 2025 SmartLinker. All rights reserved.
+  </div>
+
+</footer>
+
+
+</div>
+
+<!-- <script src="/js/theme.js"></script> -->
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init();</script>
+</body>
+</html>

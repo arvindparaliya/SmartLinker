@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+>
+  <head>
+    <title>About Us | SmartLinker</title>
+  </head>
+  <body>
+    <div id="content" class="px-6 py-16 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
+      <!-- Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-down">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">About SmartLinker</h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          SmartLinker is a smart, secure contact management platform for modern users.
+        </p>
+      </div>
+
+      <!-- Intro Section -->
+      <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up">
+        <p class="text-md leading-relaxed text-gray-700 dark:text-gray-400">
+          Built with simplicity and power in mind, SmartLinker helps you handle your contacts and relationships effortlessly.
+          Whether you're managing personal connections or professional networks, our tools are designed to make it seamless, secure, and smart.
+        </p>
+      </div>
+
+      <!-- Mission & Vision -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <!-- Mission -->
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-xl p-6" data-aos="fade-right">
+          <h3 class="text-2xl font-semibold mb-2">Our Mission</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            To simplify contact management by offering intuitive tools that ensure data privacy, accessibility, and control — all in one place.
+          </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-xl p-6" data-aos="fade-left">
+          <h3 class="text-2xl font-semibold mb-2">Our Vision</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            To become the most trusted and smart platform for managing human connections across the digital world.
+          </p>
+        </div>
+      </div>
+
+      <!-- Team or Values -->
+      <!--
+      <div class="max-w-5xl mx-auto mt-16" data-aos="fade-up">
+        <h2 class="text-3xl font-semibold text-center mb-6">Our Core Values</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <li class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
+            Privacy First
+          </li>
+          <li class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
+            Simplicity & Speed
+          </li>
+          <li class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
+            User Empowerment
+          </li>
+        </ul>
+      </div>
+      --> 
+    <!-- Footer Include -->
+     
+
+    <!-- Scripts -->
+    <script>
+      console.log("about page loaded");
+    </script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

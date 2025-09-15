@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${filterTitle} + ' - Contacts'">Contacts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<div id="content" class="sm:pl-64 px-6 py-16 bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
+
+    <!-- Sidebar for logged-in users -->
+    <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl p-6 mb-8 mt-8 ml-3 shadow-lg" data-aos="fade-down">
+        <h1 class="text-2xl md:text-3xl font-bold mb-2" th:text="${filterTitle}">Contacts</h1>
+        <p class="text-gray-200">
+            Browse and manage your <span th:text="${filterTitle?.toLowerCase()}"></span>.
+        </p>
+    </div>
+
+    <!-- Empty State -->
+    <div th:if="${contacts.empty}" class="bg-white dark:bg-gray-800 rounded-lg shadow p-8 ml-3 text-center" data-aos="fade-up">
+        <i class="fas fa-address-book text-5xl text-gray-400 mb-4"></i>
+        <h2 class="text-xl font-medium text-gray-700 dark:text-gray-300">No contacts found</h2>
+        <p class="text-gray-500 dark:text-gray-400 mt-2"
+           th:text="'No contacts in ' + ${filterTitle?.toLowerCase()} + ' category'">
+            No contacts in this category
+        </p>
+    </div>
+
+    <!-- Contact Grid -->
+    <div th:unless="${contacts.empty}" class="ml-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+        <div th:each="contact : ${contacts}"
+             class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+            <div class="p-6">
+                <!-- Contact Header -->
+                <div class="flex items-center mb-4">
+                    <div class="flex-shrink-0 h-12 w-12 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+                        <th:block th:if="${contact.picture}">
+                            <img th:src="${contact.picture}" class="h-12 w-12 rounded-full object-cover">
+                        </th:block>
+                        <th:block th:unless="${contact.picture}">
+                            <i class="fas fa-user text-gray-500 dark:text-gray-400"></i>
+                        </th:block>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white" th:text="${contact.name}">Name</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400" th:text="${contact.email} ?: 'No email'">Email</p>
+                    </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="space-y-2 text-sm">
+                    <div th:if="${contact.phoneNumber}" class="flex items-center">
+                        <i class="fas fa-phone-alt text-gray-400 mr-2"></i>
+                        <span th:text="${contact.phoneNumber}">Phone</span>
+                    </div>
+                    <div th:if="${contact.address}" class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-gray-400 mr-2 mt-0.5"></i>
+                        <span th:text="${contact.address}">Address</span>
+                    </div>
+                    <div th:if="${contact.websiteLink}" class="flex items-center">
+                        <i class="fas fa-globe text-gray-400 mr-2"></i>
+                        <a th:href="${#strings.startsWith(contact.websiteLink, 'http') ? contact.websiteLink : 'https://' + contact.websiteLink}"
+                           target="_blank"
+                           class="text-blue-500 hover:underline"
+                           th:text="${contact.websiteLink}">Website</a>
+                    </div>
+                    <div th:if="${contact.linkedInLink}" class="flex items-center">
+                        <i class="fab fa-linkedin text-gray-400 mr-2"></i>
+                        <a th:href="${#strings.startsWith(contact.linkedInLink, 'http') ? contact.linkedInLink : 'https://' + contact.linkedInLink}"
+                           target="_blank"
+                           class="text-blue-500 hover:underline"
+                           th:text="${contact.linkedInLink}">LinkedIn</a>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-6 flex justify-between items-center">
+                    <span th:if="${contact.favorite}" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-50 text-yellow-800 dark:text-black">
+                        <i class="fas fa-star mr-1"></i> Favorite
+                    </span>
+                    <div class="space-x-3">
+                        <a th:href="@{'/user/contacts/view/' + ${contact.id}}" class="text-blue-500 hover:text-blue-700 dark:hover:text-blue-400">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/user/contacts/delete/' + ${contact.id}}"
+                           class="text-red-500 hover:text-red-700 dark:hover:text-red-400"
+                           onclick="return confirm('Are you sure you want to delete this contact?')">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</body>
+</html>

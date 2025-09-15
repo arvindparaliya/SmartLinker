@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title th:text="${loggedInUser.name} + ' | Profile | SmartLinker'">Update Profile | SmartLinker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="content">
+
+        <!-- Sidebar -->
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="sm:pl-64 pt-20 min-h-screen bg-gray-50 dark:bg-gray-900">
+            <div class="p-4 md:p-8">
+
+                <!-- Page Header -->
+                <div
+                    class="max-w-3xl mx-auto text-center mt-2 mb-6 bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl p-6">
+                    <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Update Your Profile</h1>
+                    <p class="text-gray-600 dark:text-gray-400">Manage your account details</p>
+                </div>
+
+                <!-- Profile Card -->
+                <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden"
+                    data-aos="fade-up">
+
+                    <!-- Profile Update Form -->
+                    <form id="profileUpdateForm" th:action="@{/user/profile/update}" method="post"
+                        enctype="multipart/form-data" class="p-6 md:p-8 space-y-6">
+
+                        <!-- Profile Header (Photo Upload) -->
+                        <div class="bg-gradient-to-r from-blue-400 to-indigo-500 p-6 text-center">
+                            <div class="flex justify-center">
+                                <div class="relative">
+                                    <!-- Profile Image Preview -->
+                                    <img onerror="this.onerror=null;this.src='/images/duser.png'"
+                                        th:src="@{${loggedInUser.profilePic}}" src="/images/duser.png"
+                                        alt="Profile Photo"
+                                        class="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
+                                        id="profileImagePreview">
+
+                                    <!-- Hidden file input -->
+                                    <input type="file" name="profileImage" id="profileImageInput" accept="image/*"
+                                        class="hidden" onchange="previewProfileImage(event)">
+
+                                    <!-- Change button -->
+                                    <button type="button"
+                                        onclick="document.getElementById('profileImageInput').click();"
+                                        class="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <h2 class="mt-4 text-2xl font-semibold text-white" data-th-text="${loggedInUser.name}">User
+                                Name</h2>
+                        </div>
+
+                        <!-- Name -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full
+                                Name</label>
+                            <input type="text" id="name" name="name" th:value="${loggedInUser.name}" required
+                                class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 dark:text-white
+                                      bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600
+                                      focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition" />
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email
+                                Address</label>
+                            <input type="email" id="email" name="email" th:value="${loggedInUser.email}" required
+                                class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 dark:text-white
+                                      bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600
+                                      focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition" />
+                        </div>
+
+                        <!-- Phone -->
+                        <div>
+                            <label for="phoneNumber"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone Number</label>
+                            <input type="text" id="phoneNumber" name="phoneNumber"
+                                th:value="${loggedInUser.phoneNumber}" required
+                                class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 dark:text-white
+                                      bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600
+                                      focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition" />
+                        </div>
+
+                        <!-- About -->
+                        <div>
+                            <label for="about"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">About</label>
+                            <textarea id="about" name="about" rows="4"
+                                class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 dark:text-white
+                                 bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600
+                                 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition">[[${loggedInUser.about}]]</textarea>
+                        </div>
+
+                        <!-- Save / Reset -->
+                        <div class="flex justify-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <button type="submit"
+                                class="px-8 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Save</button>
+                            <button type="reset"
+                                class="px-8 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600">Reset</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div data-th-replace="~{user/profile_modals :: user}"></div>
+
+        </div>
+
+    </div>
+    <script data-th-src="@{'/js/profile.js'}"></script>
+    <script>
+        // Preview image before upload
+        function previewProfileImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+            reader.onload = function () {
+                document.getElementById('profileImagePreview').src = reader.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
+
+</body>
+
+</html>

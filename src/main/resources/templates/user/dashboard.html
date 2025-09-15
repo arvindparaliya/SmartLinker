@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title data-th-text="${loggedInUser.name}+' | Dashboard'">Dashboard</title>
+</head>
+
+<body>
+    <div id="content">
+        <!-- Sidebar -->
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="sm:pl-64 pt-0 min-h-screen bg-gray-50 dark:bg-gray-900">
+
+            <!-- Top Navigation -->
+            <header class="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-sm">
+                <div class="px-6 py-4 flex justify-between items-center">
+                    <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">Dashboard</h1>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </span>
+                            <input type="text" placeholder="Search contacts..."
+                                class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="p-6">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl p-6 mt-4 text-white shadow-lg mb-8"
+                    data-aos="fade-down">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-bold" data-th-text="'Welcome back, '+${loggedInUser.name}+'!'">
+                                Welcome back, User!</h2>
+                            <p class="mt-2 opacity-90">Manage your contacts efficiently</p>
+                        </div>
+                        <div class="hidden md:block">
+                            <img src="/images/contacts-illustration.svg" alt="Contacts" class="h-24">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div data-aos="fade-up">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                            <div class="flex items-center">
+                                <div
+                                    class="p-3 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 mr-4">
+                                    <i class="fas fa-users text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 dark:text-gray-400">Total Contacts</p>
+                                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white"
+                                        th:text="${totalContacts}">0</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                            <div class="flex items-center">
+                                <div
+                                    class="p-3 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 mr-4">
+                                    <i class="fas fa-user-plus text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 dark:text-gray-400">New This Week</p>
+                                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white"
+                                        th:text="${newContacts}">0</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                            <div class="flex items-center">
+                                <div
+                                    class="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 mr-4">
+                                    <i class="fas fa-star text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 dark:text-gray-400">Favorites</p>
+                                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white"
+                                        th:text="${favoriteContacts}">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Contacts and Quick Actions -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Recent Contacts -->
+                        <div
+                            class="col-span-1 lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                            <div
+                                class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Recent Contacts</h2>
+                                <a th:href="@{'/user/contacts'}"
+                                    class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View All</a>
+                            </div>
+                            <div class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <div th:each="contact : ${recentContacts}"
+                                    class="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+
+                                    <div class="flex items-center">
+                                        <div
+                                            class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300">
+                                            <img onerror="this.onerror=null;this.src='/images/dprofile.png'"
+                                                class="h-10 w-10 rounded-full" data-th-src="@{${contact.picture}}"
+                                                alt="Contact image" />
+
+                                        </div>
+
+                                        <div class="ml-4 flex-1 min-w-0">
+                                            <p class="text-sm font-medium text-gray-900 dark:text-white truncate"
+                                                th:text="${contact.name}">Contact Name</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400 truncate"
+                                                th:text="${contact.email}">contact@example.com</p>
+                                        </div>
+                                        <div class="ml-4 flex-shrink-0"
+                                            th:if="${contact.createdAt != null and contact.createdAt.isAfter(T(java.time.LocalDateTime).now().minusDays(7))}">
+                                            <span
+                                                class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                New
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="col-span-1 bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Quick Actions</h2>
+                            </div>
+                            <div class="p-4 grid grid-cols-2 gap-4">
+                                <a th:href="@{'/user/contacts/add'}"
+                                    class="p-4 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition flex flex-col items-center">
+                                    <div
+                                        class="p-3 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 mb-2">
+                                        <i class="fas fa-user-plus text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-800 dark:text-white">Add Contact</span>
+                                </a>
+                                <a th:href="@{'/user/contacts'}"
+                                    class="p-4 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition flex flex-col items-center">
+                                    <div
+                                        class="p-3 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 mb-2">
+                                        <i class="fas fa-list text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-800 dark:text-white">View All</span>
+                                </a>
+                                <a th:href="@{'/user/contacts/export'}"
+                                    class="p-4 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition flex flex-col items-center">
+                                    <div
+                                        class="p-3 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 mb-2">
+                                        <i class="fas fa-file-export text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-800 dark:text-white">Export</span>
+                                </a>
+                                <a href="/user/categories"
+                                    class="p-4 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition flex flex-col items-center">
+                                    <div
+                                        class="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 mb-2">
+                                        <i class="fas fa-tags text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-800 dark:text-white">Categories</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>ś
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log("Dashboard loaded");
+        // Dashboard-specific interactions can go here
+    </script>
+</body>
+
+</html>

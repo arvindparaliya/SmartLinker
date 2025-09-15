@@ -1,0 +1,21 @@
+{
+  "name": "smartlinker",
+  "version": "1.0.0",
+  "description": "A modern web project using Tailwind CSS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch",
+    "build": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["tailwind", "postcss", "frontend"],
+  "author": "Arvind Paraliya",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.3"
+  }
+}
+

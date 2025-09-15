@@ -1,0 +1,103 @@
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/your_kit_id.js" crossorigin="anonymous"></script>
+
+<!-- nav-->
+<nav data-th-fragment="navbar"
+  class="bg-white dark:bg-gray-900 sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-screen-xl mx-auto px-4 py-5 flex items-center justify-between">
+    
+    <!-- logo-->
+    <a data-th-href="@{'/'}" class="flex items-center gap-3">
+      <img data-th-src="@{'/images/telephone.png'}" class="h-10 rounded-full shadow" alt="SmartLinker Logo" />
+      <span class="text-3xl font-bold text-gray-800 dark:text-white">SmartLinker</span>
+    </a>
+
+    <!-- desktop navbar -->
+  <div class="hidden md:flex gap-6 items-center text-gray-700 dark:text-gray-200">
+  <!-- home-->
+    <a data-th-href="@{'/'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1">
+      <i class="fa-solid fa-house"></i> Home
+    </a>
+
+   <!-- Services  -->
+  <a data-th-href="@{'/services'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1">
+    <i class="fa-solid fa-briefcase"></i> Services
+  </a>
+
+  <!-- About  -->
+  <a data-th-href="@{'/about'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1">
+    <i class="fa-solid fa-circle-info"></i> About Us
+  </a>
+  
+
+  <!-- Contact us-->
+  <a data-th-href="@{'/contact'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1">
+    <i class="fa-solid fa-envelope-circle-check"></i> Contact Us
+  </a>
+</div>
+
+
+    <div class="hidden md:flex items-center gap-3">
+      <!-- toggle -->
+      <button id="theme_change_button"
+        class="flex items-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-4 py-2 rounded-lg hover:shadow transition">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+        <span id="theme_label">Light</span>
+      </button>
+
+      <!-- Logiin-->
+      <a data-th-href="@{'/login'}"
+        class="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800 font-medium px-5 py-2.5 rounded-lg transition">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </a>
+
+      <!--account create-->
+      <a data-th-href="@{'/register'}"
+        class="flex items-center gap-2 text-white bg-green-600 hover:bg-green-700 font-medium px-5 py-2.5 rounded-lg transition">
+        <i class="fa-solid fa-user-plus"></i> Create Account
+      </a>
+    </div>
+
+    <!-- phone menu ->
+    <button id="mobile-menu-toggle" class="md:hidden text-gray-800 dark:text-white text-2xl">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- phone menu (Hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+    <div class="flex flex-col gap-3 text-gray-700 dark:text-gray-200">
+      <a data-th-href="@{'/'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+      <a data-th-href="@{'/about'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2">
+        <i class="fa-solid fa-circle-info"></i> About Us
+      </a>
+      <a data-th-href="@{'/services'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2">
+        <i class="fa-solid fa-gauge-high"></i> Services
+      </a>
+      <a data-th-href="@{'/contact'}" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2">
+        <i class="fa-solid fa-address-book"></i> Contact Us
+      </a>
+
+      <hr class="border-gray-300 dark:border-gray-700" />
+
+      <div class="flex flex-col gap-3">
+        <button id="theme_change_button_mobile"
+          class="flex items-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-4 py-2 rounded-lg hover:shadow transition">
+          <i class="fa-solid fa-circle-half-stroke"></i> <span id="theme_label_mobile">Light</span>
+        </button>
+
+        <a data-th-href="@{'/login'}"
+          class="flex items-center gap-2 text-white bg-blue-700 hover:bg-blue-800 font-medium px-5 py-2.5 rounded-lg transition">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+
+        <a data-th-href="@{'/register'}"
+          class="flex items-center gap-2 text-white bg-green-600 hover:bg-green-700 font-medium px-5 py-2.5 rounded-lg transition">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

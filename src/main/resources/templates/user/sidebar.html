@@ -1,0 +1,85 @@
+<aside
+  data-th-fragment="sidebar"
+  id="logo-sidebar"
+  class="fixed top-0 left-0 z-30 w-64 h-screen pt-16 bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 sm:translate-x-0 -translate-x-full"
+  aria-label="Sidebar"
+>
+  <div class="h-full pt-4 px-3 pb-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+
+    <!-- USER INFO -->
+    <div class="flex flex-col items-center gap-2 mb-6 px-2">
+      <img 
+        data-th-src="@{${loggedInUser.profilePic}}"
+        src="/images/duser.png" 
+        alt="User Profile"
+        class="w-20 h-20 md:w-24 md:h-24 rounded-full shadow-md"
+        onerror="this.onerror=null;this.src='/images/duser.png'"
+      />
+      <div class="text-center">
+        <h2 class="text-lg font-semibold text-gray-800 dark:text-white truncate max-w-[200px]" data-th-text="${loggedInUser.name}">
+          User Name
+        </h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Welcome to SmartLinker</p>
+      </div>
+    </div>
+
+      <!-- MENU ITEMS with adjusted spacing -->
+  <nav class="space-y-3 font-medium"> 
+    <!-- DASHBOARD -->
+    <a
+      data-th-href="@{'/user/dashboard'}"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      <i class="fa-solid fa-table w-5 h-5"></i>
+      Dashboard
+    </a>
+
+    <!-- ADD CONTACT -->
+    <a
+      data-th-href="@{'/user/contacts/add'}"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      <i class="fa-solid fa-user-plus w-5 h-5"></i>
+      Add Contact
+    </a>
+
+    <!-- CONTACTS -->
+    <a
+      data-th-href="@{'/user/contacts'}"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      <i class="fa-solid fa-id-card w-5 h-5"></i>
+      Contacts
+    </a>
+
+    <!-- FEEDBACK -->
+    <a
+      data-th-href="@{'/user/feedback'}"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      <i class="fa-solid fa-comment-dots w-5 h-5"></i>
+      Feedback
+    </a>
+
+    <!-- PROFILE -->
+    <a
+      data-th-href="@{'/user/profile'}"
+      class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      <i class="fa-solid fa-circle-user w-5 h-5"></i>
+      Profile
+      <span class="ml-auto bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-700 dark:text-green-100">Manage</span>
+    </a>
+
+
+    <!-- LOGOUT -->
+    <a
+      data-th-href="@{'/do-logout'}"
+      class="flex items-center gap-3 px-4 py-3 mt-6 rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-gray-800"
+    >
+      <i class="fa-solid fa-right-from-bracket w-5 h-5"></i>
+      Logout
+    </a>
+  </nav>
+</div>
+</aside>

@@ -1,0 +1,108 @@
+<nav 
+  th:fragment="user-navbar" 
+  class="fixed bg-gray-50 dark:bg-gray-800 top-0 z-40 left-0 border-b border-gray-200 dark:border-gray-700 w-full">
+  
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    
+    <!-- Brand & Mobile Menu Button (left side) -->
+    <div class="flex items-center gap-4">
+      <!-- Mobile Menu Button (only shows on mobile) -->
+      <button id="mobile-menu-toggle" class="md:hidden text-gray-800 dark:text-white text-2xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      
+      <!-- Brand -->
+      <a data-th-href="@{'/home'}" class="flex items-center gap-2">
+        <!-- <img data-th-src="@{'/images/telephone.png'}" class="h-8 rounded-full shadow" alt="SmartLinker Logo" /> -->
+        <span class="text-2xl font-bold text-gray-800 dark:text-white">SmartLinker</span>
+      </a>
+    </div>
+
+    <!-- Search Bar (hidden on mobile)
+    <div class="hidden md:flex flex-grow max-w-md mx-4">
+      <input type="text" placeholder="Search contacts..."
+        class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" />
+    </div> -->
+
+    <!-- Desktop Actions -->
+    <div class="hidden md:flex items-center gap-3">
+      <a data-th-href="@{'/user/contacts/add'}"
+        class="items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition hidden md:flex">
+        <i class="fa-solid fa-plus"></i> Add Contact
+      </a>
+
+      <button id="theme_change_button"
+        class="flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-2.5 rounded-lg hover:shadow transition">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+        <span id="theme_label" class="hidden sm:inline">Light</span>
+      </button>
+
+      <a data-th-href="@{'/user/profile'}" class="flex items-center gap-2">
+        <img
+        onerror="this.onerror=null;this.src='/images/duser.png'"
+        data-th-src="@{${loggedInUser.profilePic}}"
+        src="/images/duser.png"
+        alt="User Profile"
+        class="h-8 w-8 rounded-full shadow border-2 border-blue-500"
+      />
+
+        <span class="text-sm font-medium text-gray-800 dark:text-white hidden lg:inline"
+          data-th-text="${loggedInUser.name}"></span>
+      </a>
+    </div>
+
+    <!-- Mobile Search Button (hidden on desktop) -->
+    <button id="mobile-search-toggle" class="md:hidden text-gray-800 dark:text-white text-xl">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Search Bar (Hidden by default) -->
+  <div id="mobile-search" class="hidden px-4 pb-3 md:hidden">
+    <input type="text" placeholder="Search contacts..."
+      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" />
+  </div>
+
+  <!-- Mobile Dropdown Menu (Hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+    <div class="flex flex-col gap-3 text-gray-700 dark:text-gray-200 pt-3">
+      
+      <a data-th-href="@{'/user/dashboard'}"
+        class="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400">
+        <i class="fa-solid fa-table w-5 h-5 mt-1"></i> Dashboard
+      </a>
+      
+      <a data-th-href="@{'/user/contacts/add'}"
+        class="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400">
+       <i class="fa-solid fa-user-plus w-5 h-5 mt-1"></i> Add Contact
+      </a>
+
+      <a data-th-href="@{'/user/contacts'}"
+        class="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400">
+        <i class="fa-solid fa-address-book w-5 h-5 mt-1.5"></i> Contacts
+      </a>
+
+      <a data-th-href="@{'/user/profile'}"
+        class="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400">
+        <i class="fa-solid fa-user w-5 h-5 mt-1"></i> Profile
+      </a>
+
+      <a data-th-href="@{'/user/feedback'}"
+        class="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400">
+        <i class="fa-solid fa-comment-dots w-5 h-5 mt-1"></i>
+        Feedback
+      </a>
+
+      <button id="theme_change_button_mobile"
+        class="flex items-center gap-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-4 py-2 rounded-lg hover:shadow transition">
+        <i class="fa-solid fa-circle-half-stroke"></i> <span id="theme_label_mobile">Light</span>
+      </button>
+
+      <a data-th-href="@{'/logout'}"
+        class="flex items-center gap-3 text-white bg-red-600 hover:bg-red-700 font-medium px-4 py-2 rounded-lg transition mt-0">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </a>
+    </div>
+  </div>
+</nav>
+

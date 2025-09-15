@@ -1,0 +1,47 @@
+### Build ###
+target/
+build/
+nbbuild/
+nbdist/
+!.mvn/wrapper/maven-wrapper.jar
+
+### IDEs ###
+# STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ
+.idea
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nb-gradle/
+
+# VS Code
+.vscode/
+
+### OS ###
+.DS_Store
+Thumbs.db
+desktop.ini
+
+### App-specific ###
+mysql_data/
+keyfile.txt
+*.log
+
+# Config
+src/main/resources/application.properties
+
+### Node / Frontend ###
+node_modules/
+dist/
+.env
