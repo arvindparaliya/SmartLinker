@@ -1,8 +1,14 @@
 package com.smartlinker.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.OutputStream;
+// import java.io.PrintWriter;
 import java.util.*;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
@@ -335,35 +341,56 @@ public class ContactController {
     }
 
     @GetMapping("/export")
-    public void exportContacts(HttpServletResponse response, Authentication authentication) throws IOException {
+    public void exportContactsExcel(HttpServletResponse response, Authentication authentication) throws IOException {
     String email = Helper.getEmailOfLoggedInUser(authentication);
     User user = userService.getUserByEmail(email);
-
     List<Contact> contacts = contactService.getContactsByUser(user);
 
-    // Set CSV response
-    response.setContentType("text/csv");
-    response.setHeader("Content-Disposition", "attachment; filename=contacts.csv");
-
-    PrintWriter writer = response.getWriter();
-    writer.println("Created At,Name,Email,Phone,Address,Description,LinkedIn,Website,Other Link,Favorite");
-
-    for (Contact c : contacts) {
-        writer.printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s%n",
-            c.getCreatedAt(),
-            c.getName(),
-            c.getEmail(),
-            c.getPhoneNumber(),
-            c.getAddress(),
-            c.getDescription(),
-            c.getLinkedInLink(),
-            c.getWebsiteLink(),
-            c.getOtherLink(),
-            c.isFavorite() ? "Yes" : "No"
-    );
-}
-writer.flush();
-
+    // Create Excel workbook
+    XSSFWorkbook workbook = new XSSFWorkbook();
+    XSSFSheet sheet = workbook.createSheet("Contacts");
+    
+    // Create header row
+    Row headerRow = sheet.createRow(0);
+    String[] headers = {"Created At", "Name", "Email", "Phone", "Address", 
+                       "Description", "LinkedIn", "Website", "Favorite"};
+    
+    for (int i = 0; i < headers.length; i++) {
+        Cell cell = headerRow.createCell(i);
+        cell.setCellValue(headers[i]);
+    }
+    
+    // Fill data rows
+    int rowNum = 1;
+    for (Contact contact : contacts) {
+        Row row = sheet.createRow(rowNum++);
+        
+        row.createCell(0).setCellValue(contact.getCreatedAt() != null ? contact.getCreatedAt().toString() : "");
+        row.createCell(1).setCellValue(contact.getName() != null ? contact.getName() : "");
+        row.createCell(2).setCellValue(contact.getEmail() != null ? contact.getEmail() : "");
+        row.createCell(3).setCellValue(contact.getPhoneNumber() != null ? contact.getPhoneNumber() : "");
+        row.createCell(4).setCellValue(contact.getAddress() != null ? contact.getAddress() : "");
+        row.createCell(5).setCellValue(contact.getDescription() != null ? contact.getDescription() : "");
+        row.createCell(6).setCellValue(contact.getLinkedInLink() != null ? contact.getLinkedInLink() : "");
+        row.createCell(7).setCellValue(contact.getWebsiteLink() != null ? contact.getWebsiteLink() : "");
+        row.createCell(8).setCellValue(contact.isFavorite() ? "Yes" : "No");
+    }
+    
+    // Auto-size columns for better readability
+    for (int i = 0; i < headers.length; i++) {
+        sheet.autoSizeColumn(i);
+    }
+    
+    // Set response properties
+    response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    response.setHeader("Content-Disposition", "attachment; filename=contacts.xlsx");
+    
+    // Write workbook to response
+    try (OutputStream out = response.getOutputStream()) {
+        workbook.write(out);
+    }
+    
+    workbook.close();
 }
 
  // Handle category filtered requests

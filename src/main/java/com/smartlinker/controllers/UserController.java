@@ -158,7 +158,7 @@ public class UserController {
         userService.updateProfile(loggedInUser.getId(), formUser, profileImage);
 
         redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully!");
-        return "user/profile";
+        return "redirect:/user/profile";
     }
 
     // Show contact form
@@ -168,7 +168,7 @@ public class UserController {
         User user = userService.getUserByEmail(email);
         model.addAttribute("loggedInUser", user);
         model.addAttribute("contactForm", new ContactForm());
-        return "user/feedback"; // must match your actual template file
+        return "user/feedback"; 
     }
 
     // Handle contact form submission

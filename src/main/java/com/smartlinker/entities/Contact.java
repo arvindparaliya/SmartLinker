@@ -40,6 +40,8 @@ public class Contact {
     private String email;
 
     private String phoneNumber;
+    @Column(nullable = false)
+
     private String address;
     private String picture;
 

@@ -79,9 +79,6 @@ public interface ContactRepo extends JpaRepository<Contact, String> {
 
     List<Contact> findByUserAndLinkedInLinkIsNotNull(User user);
 
-
-    // long countByUserAndFavoriteTrue(User user);
-    // long countByUserAndCreatedAtAfter(User user, LocalDateTime date);
     long countByUserAndLinkedInLinkIsNotNull(User user);
     long countByUserAndWebsiteLinkIsNotNull(User user);
     long countByUserAndEmailIsNull(User user);
