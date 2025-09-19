@@ -8,10 +8,11 @@ SmartLinker is a comprehensive contact management application built with Spring 
 The application features cloud-based image storage, advanced search capabilities, and a responsive UI with theme customization. 
 Users can manage their contacts, send emails directly through the platform, and export data for external use.
 
+---
 
-Video demo Link (Click & Watch) : https://shorturl.at/zRjSg
+- Website demo video Link (Click & Watch) : https://shorturl.at/zRjSg
 
-Note: 
+- Note: 
 Live demo link (Deployment is there in progress) will be uploaded soon.
 
 ## Key Features
